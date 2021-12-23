@@ -1,0 +1,11 @@
+kind: pipeline
+name: default
+steps:
+  - name: build
+    image: maven:3.6.2-jdk-8
+    commands:
+       - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+       - mvn test -B
+    when:
+      branch: master
+      event: [ push ]
